@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Même head que index.html -->
+    <!-- Même head que index.php -->
 </head>
 <body>
     <header>
-        <!-- Même header que index.html -->
+        <!-- Même header que index.php -->
     </header>
 
     <main>
@@ -67,7 +67,7 @@
     </main>
 
     <footer>
-        <!-- Même footer que index.html -->
+        <!-- Même footer que index.php -->
     </footer>
 
     <script src="js/form-validation.js"></script>

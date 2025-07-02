@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NDAR NIMBAL CONNECT - Les GIE</title>
+    <title>NDAR NDIMBAL CONNECT - Les GIE</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -198,18 +198,22 @@
     <header>
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <div class="logo">
-                    <h1>NDAR NIMBAL CONNECT</h1>
-                    <p>Plateforme des GIE de Saint-Louis</p>
+                <div class="logo d-flex align-items-center gap-5" style="margin-top: -30px;">
+                        <img src="images/logo.png" alt="Logo NDAR NDIMBAL CONNECT" style="height: 90px;">
+                  <div style="margin-bottom: -10px;">
+                        <h1 style="margin-bottom: 0.3rem;">NDAR NDIMBAL CONNECT</h1>
+                        <p style="margin-bottom: 0;">Plateforme des GIE de Saint-Louis</p>
+                  </div>
                 </div>
                 <nav>
-                    <ul>
+                     <ul>
                         <li><a href="index.php">Accueil</a></li>
-                        <li class="active"><a href="about.php">Les GIE</a></li>
-                        <li><a href="catalog.php">Catalogue</a></li>
+                        <li><a href="about.php">Les GIE</a></li>
+                        <li class="active"><a href="catalog.php">Catalogue</a></li>
                         <li><a href="news.php">Nouveautés</a></li>
                         <li><a href="contact.php">Contact</a></li>
-                        <li><a href="login.php">Compte Admin</a></li>
+                        <li><a href="panier.php">Mon Panier</a></li>
+
                     </ul>
                     <div class="mobile-menu">
                         <i class="fas fa-bars"></i>
@@ -426,7 +430,7 @@
                                 <small class="text-muted">Présidente du GIE Ndèye Fatou</small>
                             </div>
                         </div>
-                        <p>"La plateforme NDAR NIMBAL CONNECT nous a permis de trouver de nouveaux marchés pour nos produits. La mise en réseau est essentielle pour développer nos activités."</p>
+                        <p>"La plateforme NDAR NDIMBAL CONNECT nous a permis de trouver de nouveaux marchés pour nos produits. La mise en réseau est essentielle pour développer nos activités."</p>
                     </div>
                 </div>
             </div>
@@ -440,7 +444,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5>NDAR NIMBAL CONNECT</h5>
+                    <h5>NDAR NDIMBAL CONNECT</h5>
                     <p>Plateforme de mise en relation des GIE de Saint-Louis</p>
                 </div>
                 <div class="col-md-4">
@@ -461,7 +465,7 @@
                 </div>
             </div>
             <hr>
-            <p class="text-center mb-0">&copy; 2025 NDAR NIMBAL CONNECT. Tous droits réservés.</p>
+            <p class="text-center mb-0">&copy; 2025 NDAR NDIMBAL CONNECT. Tous droits réservés.</p>
         </div>
     </footer>
 

@@ -1,602 +1,151 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NDAR NIMBAL CONNECT - Plateforme des GIE de Saint-Louis</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bienvenue - NDAR NDIMBAL CONNECT</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(120deg, #e91e63, #ff9800);
+      animation: gradientBackground 8s ease infinite;
+      background-size: 400% 400%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
 
-    <style>
-        :root {
-            --primary-color: #e91e63;
-            --secondary-color: #ff9800;
-            --success-color: #4caf50;
-            --info-color: #2196f3;
-            --dark-color: #343a40;
-            --light-color: #f8f9fa;
-        }
+    @keyframes gradientBackground {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-color);
-        }
+    .welcome-container {
+      background: white;
+      color: #333;
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
 
-        /* Header Styles */
-        header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+    .logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
 
-        .logo h1 {
-            color: var(--primary-color);
-            font-size: 1.8rem;
-            margin-bottom: 0.2rem;
-        }
+    .logo img {
+      height: 90px;
+    }
 
-        .logo p {
-            color: #666;
-            font-size: 0.9rem;
-        }
+    .btn-degrade, .btn-link-degrade {
+      display: inline-block;
+      width: 100%;
+      padding: 10px;
+      color: white !important;
+      text-align: center;
+      background: linear-gradient(45deg,rgb(109, 173, 242),rgb(6, 110, 139));
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: transform 0.3s ease, background 0.3s ease;
+      margin-top: 1rem;
+    }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-            margin: 0;
-            padding: 0;
-        }
+    .btn-degrade:hover, .btn-link-degrade:hover {
+      background: linear-gradient(45deg, #0056b3, #0099cc);
+      transform: scale(1.03);
+    }
 
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+    @media (max-width: 576px) {
+      .welcome-container {
+        padding: 1.5rem;
+      }
+      .btn-degrade, .btn-link-degrade {
+        font-size: 0.95rem;
+        padding: 10px;
+      }
+    }
 
-        nav a:hover, nav .active a {
-            color: var(--primary-color);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
-            color: white;
-            padding: 8rem 0;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        /* Features Section */
-        .feature-card {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            height: 100%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        /* Statistics Section */
-        .stats-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 4rem 0;
-            margin: 4rem 0;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.2rem;
-        }
-
-        /* Products Section */
-        .product-card {
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .product-img {
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--primary-color);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        /* Testimonials */
-        .testimonial-card {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .testimonial-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 1rem;
-        }
-
-        /* Newsletter */
-        .newsletter-section {
-            background: var(--dark-color);
-            color: white;
-            padding: 4rem 0;
-            margin-top: 3rem;
-        }
-
-        .newsletter-input {
-            border-radius: 30px;
-            padding: 0.8rem 1.5rem;
-            border: none;
-        }
-
-        .newsletter-btn {
-            border-radius: 30px;
-            padding: 0.8rem 2rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                flex-direction: column;
-                background: white;
-                position: absolute;
-                width: 100%;
-                left: 0;
-                padding: 1rem;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-                z-index: 100;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .hero-section {
-                padding: 5rem 0;
-            }
-            
-            .hero-title {
-                font-size: 2.2rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-        }
-    </style>
+    .fade-out {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="logo">
-                    <h1>NDAR NIMBAL CONNECT</h1>
-                    <p>Plateforme des GIE de Saint-Louis</p>
-                </div>
-                <nav>
-                    <ul>
-                        <li class="active"><a href="index.php">Accueil</a></li>
-                        <li><a href="about.php">Les GIE</a></li>
-                        <li><a href="catalog.php">Catalogue</a></li>
-                        <li><a href="news.php">Nouveautés</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                        <li><a href="login.php">Compte Admin</a></li>
-
-                    </ul>
-                    <div class="mobile-menu">
-                        <i class="fas fa-bars"></i>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container">
-            <h1 class="hero-title">Plateforme des GIE de Saint-Louis</h1>
-            <p class="hero-subtitle">Connectez-vous avec les groupements féminins et découvrez leurs produits artisanaux</p>
-            <div class="d-flex justify-content-center gap-3">
-                <a href="catalog.php" class="btn btn-primary btn-lg">Explorer le catalogue</a>
-                <a href="about.php" class="btn btn-outline-light btn-lg">Découvrir les GIE</a>
-            </div>
-        </div>
-    </section>
-
-    <div class="container">
-        <!-- Features Section -->
-        <section class="mb-5">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-hands-helping"></i>
-                        </div>
-                        <h3>Solidarité</h3>
-                        <p>Une plateforme qui renforce les liens entre les GIE et les met en relation avec des clients et partenaires.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-store"></i>
-                        </div>
-                        <h3>Visibilité</h3>
-                        <p>Offrez une meilleure exposition à vos produits artisanaux et augmentez vos ventes.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3>Croissance</h3>
-                        <p>Accédez à des formations et des opportunités pour développer vos activités.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Statistics Section -->
-        <section class="stats-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 mb-4">
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="25">0</div>
-                            <div class="stat-label">GIE membres</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="150">0</div>
-                            <div class="stat-label">Femmes entrepreneures</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="300">0</div>
-                            <div class="stat-label">Produits artisanaux</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <div class="stat-item">
-                            <div class="stat-number" data-count="5">0</div>
-                            <div class="stat-label">Secteurs d'activité</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Featured Products -->
-        <section class="mb-5">
-            <h2 class="text-center mb-5"><i class="fas fa-star me-3 text-warning"></i>Produits phares</h2>
-            <div class="row">
-                <!-- Produit 1 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="card product-card h-100">
-                        <div class="position-relative">
-                            <img src="https://via.placeholder.com/300x200" class="card-img-top product-img" alt="Savon au karité">
-                            <span class="product-badge">Nouveau</span>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Savon au karité</h5>
-                            <p class="card-text text-muted">GIE Ndèye Fatou</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold text-primary">1 500 FCFA</span>
-                                <button class="btn btn-sm btn-outline-primary">Voir</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Produit 2 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="card product-card h-100">
-                        <div class="position-relative">
-                            <img src="https://via.placeholder.com/300x200" class="card-img-top product-img" alt="Boubou traditionnel">
-                            <span class="product-badge">Populaire</span>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Boubou traditionnel</h5>
-                            <p class="card-text text-muted">GIE Yaay Borom</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold text-primary">25 000 FCFA</span>
-                                <button class="btn btn-sm btn-outline-primary">Voir</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Produit 3 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="card product-card h-100">
-                        <div class="position-relative">
-                            <img src="https://via.placeholder.com/300x200" class="card-img-top product-img" alt="Panier en raphia">
-                            <span class="product-badge">Meilleure vente</span>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Panier en raphia</h5>
-                            <p class="card-text text-muted">GIE Femmes Solidaires</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold text-primary">8 000 FCFA</span>
-                                <button class="btn btn-sm btn-outline-primary">Voir</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Produit 4 -->
-                <div class="col-md-3 col-sm-6">
-                    <div class="card product-card h-100">
-                        <div class="position-relative">
-                            <img src="https://via.placeholder.com/300x200" class="card-img-top product-img" alt="Confiture de mangue">
-                            <span class="product-badge">Bio</span>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Confiture de mangue</h5>
-                            <p class="card-text text-muted">GIE Sénégal Authentique</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold text-primary">3 500 FCFA</span>
-                                <button class="btn btn-sm btn-outline-primary">Voir</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-4">
-                <a href="catalog.php" class="btn btn-primary">Voir tous les produits</a>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section class="mb-5">
-            <h2 class="text-center mb-5"><i class="fas fa-quote-left me-3 text-primary"></i>Témoignages</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="testimonial-card">
-                        <div class="d-flex mb-3">
-                            <img src="https://via.placeholder.com/60" class="testimonial-img" alt="Aminata Diop">
-                            <div>
-                                <h5 class="mb-0">Aminata Diop</h5>
-                                <small class="text-muted">Membre du GIE Yaay Borom</small>
-                            </div>
-                        </div>
-                        <p>"Grâce à la plateforme, nous avons pu trouver de nouveaux clients pour nos produits. La visibilité offerte est exceptionnelle et a transformé notre petite activité en une véritable entreprise."</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="testimonial-card">
-                        <div class="d-flex mb-3">
-                            <img src="https://via.placeholder.com/60" class="testimonial-img" alt="Marième Ndiaye">
-                            <div>
-                                <h5 class="mb-0">Marième Ndiaye</h5>
-                                <small class="text-muted">Client fidèle</small>
-                            </div>
-                        </div>
-                        <p>"J'adore acheter directement auprès des GIE. Les produits sont de qualité et je sais que je contribue directement au développement économique des femmes de ma région."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Last News -->
-        <section class="mb-5">
-            <h2 class="mb-4"><i class="fas fa-newspaper me-3 text-primary"></i>Dernières actualités</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card product-card h-100">
-                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Nouveau marché">
-                        <div class="card-body">
-                            <span class="badge bg-primary mb-2">Événement</span>
-                            <h5 class="card-title">Ouverture d'un nouveau marché dédié</h5>
-                            <p class="card-text">La mairie inaugure un espace de vente réservé aux produits des groupements féminins chaque samedi.</p>
-                            <a href="news.php" class="btn btn-sm btn-outline-primary">Lire la suite</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card product-card h-100">
-                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Formation">
-                        <div class="card-body">
-                            <span class="badge bg-success mb-2">Formation</span>
-                            <h5 class="card-title">Formation en gestion pour les GIE</h5>
-                            <p class="card-text">Session de formation en gestion financière organisée par la chambre de commerce.</p>
-                            <a href="news.php" class="btn btn-sm btn-outline-primary">Lire la suite</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card product-card h-100">
-                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Partenariat">
-                        <div class="card-body">
-                            <span class="badge bg-warning mb-2">Partenariat</span>
-                            <h5 class="card-title">Nouveau partenariat international</h5>
-                            <p class="card-text">Un GIE membre signe un contrat d'exportation vers l'Europe pour ses produits cosmétiques.</p>
-                            <a href="news.php" class="btn btn-sm btn-outline-primary">Lire la suite</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <div class="welcome-container">
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo NDAR NDIMBAL CONNECT" />
     </div>
 
-    <!-- Newsletter Section -->
-    <section class="newsletter-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 text-center">
-                    <h3><i class="fas fa-envelope me-3"></i>Abonnez-vous à notre newsletter</h3>
-                    <p class="mb-4">Recevez les dernières actualités et offres directement dans votre boîte email</p>
-                    <form class="row g-2 justify-content-center">
-                        <div class="col-md-8">
-                            <input type="email" class="form-control newsletter-input" placeholder="Votre adresse email">
-                        </div>
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary newsletter-btn w-100">S'abonner</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Message de succès (si succès) -->
+    <?php if (isset($_GET['success'])): ?>
+      <div class="alert alert-success text-center mt-3" role="alert">
+        <i class="bi bi-check-circle-fill"></i> Connexion réussie. Redirection en cours...
+      </div>
+      <script>
+        // Redirection vers accueil.php après 3 secondes
+        setTimeout(() => {
+          window.location.href = "accueil.php";
+        }, 3000);
+      </script>
+    <?php endif; ?>
 
-    <footer class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>NDAR NIMBAL CONNECT</h5>
-                    <p>Plateforme de mise en relation des GIE de Saint-Louis</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Liens rapides</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="about.php" class="text-white">Les GIE</a></li>
-                        <li><a href="catalog.php" class="text-white">Catalogue</a></li>
-                        <li><a href="news.php" class="text-white">Actualités</a></li>
-                        <li><a href="contact.php" class="text-white">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Réseaux sociaux</h5>
-                    <div class="social-icons">
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <p class="text-center mb-0">&copy; 2025 NDAR NIMBAL CONNECT. Tous droits réservés.</p>
-        </div>
-    </footer>
+    <!-- Message d'erreur (si échec) -->
+    <?php if (isset($_GET['erreur'])): ?>
+      <div class="alert alert-danger text-center mt-3" role="alert">
+        <i class="bi bi-exclamation-triangle-fill"></i> Nom d'utilisateur ou mot de passe incorrect.
+      </div>
+      <script>
+        setTimeout(() => {
+          const alertBox = document.querySelector('.alert');
+          if (alertBox) {
+            alertBox.classList.add('fade-out');
+          }
+        }, 4000);
+      </script>
+    <?php endif; ?>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Gestion du menu mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuBtn = document.querySelector('.mobile-menu');
-            const navMenu = document.querySelector('nav ul');
+    <!-- Formulaire de connexion -->
+    <form method="post" action="administrateur/traitment_connexion.php">
+      <h4 class="text-center mb-3">Plateforme des GIE de Saint-Louis</h4>
+      <input class="form-control mb-2" type="text" name="username" placeholder="Nom d'utilisateur" required />
+      <input class="form-control mb-3" type="password" name="password" placeholder="Mot de passe" required />
+      <button class="btn-degrade" type="submit">
+        <i class="bi bi-shield-lock-fill"></i> Se connecter
+      </button>
+    </form>
 
-            mobileMenuBtn.addEventListener('click', function() {
-                const isDisplayed = navMenu.style.display === 'flex';
-                navMenu.style.display = isDisplayed ? 'none' : 'flex';
-            });
+    <!-- Lien pour créer un compte -->
+    <p class="text-center mt-3">
+      Pas encore de compte ?
+      <a href="creer_compte.php" class="btn-link-degrade">
+        <i class="bi bi-person-plus-fill"></i> Créer un compte
+      </a>
+    </p>
 
-            // Animation des statistiques
-            const statNumbers = document.querySelectorAll('.stat-number');
-            
-            function animateStats() {
-                statNumbers.forEach(stat => {
-                    const target = parseInt(stat.getAttribute('data-count'));
-                    const duration = 2000; // 2 seconds
-                    const step = target / (duration / 16); // 60fps
-                    let current = 0;
-                    
-                    const timer = setInterval(() => {
-                        current += step;
-                        if (current >= target) {
-                            clearInterval(timer);
-                            current = target;
-                        }
-                        stat.textContent = Math.floor(current);
-                    }, 16);
-                });
-            }
+    <!-- Lien pour entrer sans connexion -->
+    <a href="accueil.php" class="btn-degrade text-white">
+      <i class="bi bi-box-arrow-in-right"></i> Entrer sans connexion
+    </a>
+  </div>
 
-            // Détecter quand la section stats est visible
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateStats();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            const statsSection = document.querySelector('.stats-section');
-            if (statsSection) {
-                observer.observe(statsSection);
-            }
-
-            // Fermer le menu quand on clique sur un lien
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (window.innerWidth <= 768) {
-                        navMenu.style.display = 'none';
-                    }
-                });
-            });
-        });
-    </script>
+  <script>
+    // Cacher automatiquement les alertes après 4 secondes
+    setTimeout(() => {
+      const alertBox = document.querySelector('.alert');
+      if (alertBox) {
+        alertBox.classList.add('fade-out');
+      }
+    }, 4000);
+  </script>
 </body>
 </html>

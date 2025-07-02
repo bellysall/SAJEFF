@@ -177,17 +177,22 @@
     <header>
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
-                <div class="logo">
-                    <h1>NDAR NIMBAL CONNECT</h1>
-                    <p>Plateforme des GIE de Saint-Louis</p>
+                <div class="logo d-flex align-items-center gap-5" style="margin-top: -30px;">
+                        <img src="images/logo.png" alt="Logo NDAR NDIMBAL CONNECT" style="height: 90px;">
+                  <div style="margin-bottom: -10px;">
+                        <h1 style="margin-bottom: 0.3rem;">NDAR NDIMBAL CONNECT</h1>
+                        <p style="margin-bottom: 0;">Plateforme des GIE de Saint-Louis</p>
+                  </div>
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="index.php">Accueil</a></li>
+                        <li><a href="accueil.php">Accueil</a></li>
                         <li><a href="about.php">Les GIE</a></li>
-                        <li class="active"><a href="catalogue.php">Catalogue</a></li>
+                        <li class="active"><a href="catalog.php">Catalogue</a></li>
                         <li><a href="news.php">Nouveautés</a></li>
                         <li><a href="contact.php">Contact</a></li>
+                        <li><a href="panier.php">Mon Panier</a></li>
+
                     </ul>
                     <div class="mobile-menu">
                         <i class="fas fa-bars"></i>
@@ -322,14 +327,14 @@
      <!-- Panier Form -->
     <form method="post" action="ajouter_panier.php">
         <input type="hidden" name="gie" value="<?= $gie['nom'] ?>">
-        <button type="submit" class="btn btn-success mt-2 w-100"><i class="fas fa-cart-plus me-2"></i>Ajouter au panier</button>
+      <!--  <button type="submit" class="btn btn-success mt-2 w-50"><i class="fas fa-cart-plus me-2"></i>Ajouter au panier</button>-->
     </form>
 
      <footer class="bg-dark text-white py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5>NDAR NIMBAL CONNECT</h5>
+                    <h5>NDAR NDIMBAL CONNECT</h5>
                     <p>Plateforme de mise en relation des GIE de Saint-Louis</p>
                 </div>
                 <div class="col-md-4">
@@ -352,7 +357,7 @@
                 </div>
             </div>
             <hr>
-            <p class="text-center mb-0">&copy; 2025 NDAR NIMBAL CONNECT. Tous droits réservés.</p>
+            <p class="text-center mb-0">&copy; 2025 NDAR NDIMBAL CONNECT. Tous droits réservés.</p>
         </div>
     </footer>
 
@@ -423,49 +428,54 @@
         ];
 
         let filteredProducts = [...products];
+ // Mise à jour de la fonction displayProducts avec bouton "Ajouter au panier"
+    function displayProducts(productsToShow) {
+        const grid = document.getElementById('productsGrid');
+        grid.innerHTML = '';
 
-        // Afficher les produits
-        function displayProducts(productsToShow) {
-            const grid = document.getElementById('productsGrid');
-            grid.innerHTML = '';
-
-            productsToShow.forEach(product => {
-                const productCard = `
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card product-card h-100">
-                            <div class="product-image">
-                                <i class="${product.image}" aria-hidden="true"></i>
+        productsToShow.forEach(product => {
+            const productCard = `
+                <div class="col-lg-4 col-md-6">
+                    <div class="card product-card h-100">
+                        <div class="product-image">
+                            <i class="${product.image}" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="card-title mb-0">${product.name}</h5>
+                                <span class="category-badge">${product.category}</span>
                             </div>
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-start mb-2">
-                                    <h5 class="card-title mb-0">${product.name}</h5>
-                                    <span class="category-badge">${product.category}</span>
-                                </div>
-                                <div class="gie-info">
-                                    <small><i class="fas fa-users me-2" aria-hidden="true"></i>${product.gie}</small>
-                                </div>
-                                <p class="card-text text-muted">${product.description}</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="price-tag">${product.price.toLocaleString()} FCFA</span>
-                                    <button class="btn btn-sm contact-btn text-white" onclick="contactGie('${product.contact}', '${product.name}')">
-                                        <i class="fas fa-phone me-1" aria-hidden="true"></i>Contacter
+                            <div class="gie-info">
+                                <small><i class="fas fa-users me-2" aria-hidden="true"></i>${product.gie}</small>
+                            </div>
+                            <p class="card-text text-muted">${product.description}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price-tag">${product.price.toLocaleString()} FCFA</span>
+                                <form method="post" action="ajouter_panier.php" class="m-0">
+                                    <input type="hidden" name="product_id" value="${product.id}">
+                                    <input type="hidden" name="product_name" value="${product.name}">
+                                    <input type="hidden" name="product_price" value="${product.price}">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="fas fa-cart-plus me-1"></i>Ajouter au panier
                                     </button>
-                                </div>
+                                </form>
                             </div>
+
                         </div>
                     </div>
-                `;
-                grid.innerHTML += productCard;
-            });
+                </div>
+            `;
+               grid.innerHTML += productCard;
+        });
 
-            if (productsToShow.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-12 text-center py-5">
-                        <i class="fas fa-search fa-3x text-muted mb-3" aria-hidden="true"></i>
-                        <h4 class="text-muted">Aucun produit trouvé</h4>
-                        <p class="text-muted">Essayez de modifier vos critères de recherche</p>
-                    </div>
-                `;
+        if (productsToShow.length === 0) {
+            grid.innerHTML = `
+                <div class="col-12 text-center py-5">
+                    <i class="fas fa-search fa-3x text-muted mb-3" aria-hidden="true"></i>
+                    <h4 class="text-muted">Aucun produit trouvé</h4>
+                    <p class="text-muted">Essayez de modifier vos critères de recherche</p>
+                </div>
+            `;
             }
         }
 
