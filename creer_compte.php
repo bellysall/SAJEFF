@@ -1,6 +1,7 @@
 <?php
+//var_dump('bonjour');die;//
 // Connexion à la base de données
-require_once 'connexion.php';
+require_once 'config.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -21,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error_message = "L'adresse email est invalide.";
     } else {
         // Vérifier si le nom d'utilisateur ou l'email existe déjà
-        $stmt = $connexion->prepare("SELECT * FROM utilisateurs WHERE username = :username OR email = :email");
+        $stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE username = :username OR email = :email");
         $stmt->execute(['username' => $username, 'email' => $email]);
         
         if ($stmt->rowCount() > 0) {
@@ -34,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $verification_token = bin2hex(random_bytes(16)); // Génère un token de 32 caractères
 
             // Insérer le nouvel utilisateur dans la base de données avec un statut de non confirmé
-            $stmt = $connexion->prepare("INSERT INTO utilisateurs (username, password, email, verification_token, is_verified) VALUES (:username, :password, :email, :verification_token, 0)");
+            $stmt = $pdo->prepare("INSERT INTO utilisateurs (username, password, email, verification_token, is_verified) VALUES (:username, :password, :email, :verification_token, 0)");
             $stmt->execute(['username' => $username, 'password' => $hashed_password, 'email' => $email, 'verification_token' => $verification_token]);
 
             // Envoi de l'email de confirmation

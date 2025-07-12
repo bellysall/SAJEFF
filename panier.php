@@ -1,50 +1,55 @@
 <?php
 session_start();
+require_once 'config.php';
 
-// Récupérer les produits du panier
-$panier = $_SESSION['panier'] ?? [];
-$total = 0;
+if (!isset($_SESSION['user'])) {
+    header('Location: panier.php');
+    exit;
+}
+
+$userId = $_SESSION['user']['id'];
+
+$sql = "SELECT p.nom, p.prix, pa.quantite
+        FROM panier pa
+        JOIN produits p ON p.id = pa.produit_id
+        WHERE pa.user_id = ?";
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$userId]);
+$items = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mon Panier - NDAR NDIMBAL CONNECT</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Panier</title>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2 class="mb-4">🛒 Mon Panier</h2>
-
-        <?php if (empty($panier)) : ?>
-            <div class="alert alert-info">Votre panier est vide.</div>
-        <?php else : ?>
-            <table class="table table-bordered">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Produit</th>
-                        <th>Prix (FCFA)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($panier as $item) : ?>
-                        <tr>
-                            <td><?= htmlspecialchars($item['name']) ?></td>
-                            <td><?= number_format($item['price'], 0, ',', ' ') ?></td>
-                        </tr>
-                        <?php $total += $item['price']; ?>
-                    <?php endforeach; ?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Total</th>
-                        <th><?= number_format($total, 0, ',', ' ') ?> FCFA</th>
-                    </tr>
-                </tfoot>
-            </table>
-            <a href="catalog.php" class="btn btn-primary">← Retour au catalogue</a>
-        <?php endif; ?>
-    </div>
+    <h2>Votre Panier</h2>
+    <table border="1">
+        <tr>
+            <th>Produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Total</th>
+        </tr>
+        <?php
+        $total = 0;
+        foreach ($items as $item):
+            $sousTotal = $item['prix'] * $item['quantite'];
+            $total += $sousTotal;
+        ?>
+        <tr>
+            <td><?= htmlspecialchars($item['nom']) ?></td>
+            <td><?= $item['prix'] ?> FCFA</td>
+            <td><?= $item['quantite'] ?></td>
+            <td><?= $sousTotal ?> FCFA</td>
+        </tr>
+        <?php endforeach; ?>
+        <tr>
+            <td colspan="3"><strong>Total :</strong></td>
+            <td><strong><?= $total ?> FCFA</strong></td>
+        </tr>
+    </table>
 </body>
 </html>

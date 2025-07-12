@@ -16,7 +16,10 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--light-color);
+           /* background: linear-gradient(to right, #fdfcfb, #fdfcfb); */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         /* Header Styles */
@@ -36,6 +39,15 @@
         .logo p {
             color: #666;
             font-size: 0.9rem;
+        }
+        .gradient-blue-btn {
+          background: linear-gradient(45deg, #007bff, #00c6ff);
+          border: none;
+        }
+
+        
+        .gradient-blue-btn:hover {
+            background: linear-gradient(135deg, #0066cc, #004080); /* Plus foncé au survol */
         }
 
         nav ul {
@@ -144,6 +156,28 @@
         .accordion-button:focus {
             box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
         }
+        /* Newsletter */
+        .newsletter-section {
+            background: var(--dark-color);
+            color: white;
+            padding: 4rem 0;
+            margin-top: 3rem;
+        }
+
+        .newsletter-input {
+            border-radius: 30px;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            font-size: 18px;
+           padding: 10px 12px; 
+
+        }
+
+        .newsletter-btn {
+            border-radius: 30px;
+            padding: 0.8rem 2rem;
+        }
+
 
         /* Responsive */
         @media (max-width: 768px) {
@@ -171,31 +205,54 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="logo d-flex align-items-center gap-5" style="margin-top: -30px;">
-                        <img src="images/logo.png" alt="Logo NDAR NDIMBAL CONNECT" style="height: 90px;">
-                  <div style="margin-bottom: -10px;">
-                        <h1 style="margin-bottom: 0.3rem;">NDAR NDIMBAL CONNECT</h1>
-                        <p style="margin-bottom: 0;">Plateforme des GIE de Saint-Louis</p>
-                  </div>
-                </div>
-                <nav>
-                     <ul>
-                        <li><a href="accueil.php">Accueil</a></li>
-                        <li><a href="about.php">Les GIE</a></li>
-                        <li class="active"><a href="catalog.php">Catalogue</a></li>
-                        <li><a href="news.php">Nouveautés</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                        <li><a href="panier.php">Mon Panier</a></li>
+         <div class="container py-2">
+    <div class="row align-items-center gx-3">
 
-                    </ul>
-                    <div class="mobile-menu">
-                        <i class="fas fa-bars"></i>
-                    </div>
-                </nav>
-            </div>
-        </div>
+      <!-- 🟣 Logo -->
+      <div class="col-md-2 d-flex align-items-center">
+        <img src="images/logo.png" alt="Logo NDAR NDIMBAL CONNECT" style="height: 70px;">
+      </div>
+
+      <!-- 🔵 Barre de recherche avec icône dans l'input -->
+      <div class="col-md-6">
+        <form class="d-flex align-items-center" role="search">
+          <div class="input-group" style="max-width: 300px;">
+            <span class="input-group-text bg-white border-end-0">
+              <i class="fas fa-search text-secondary"></i>
+            </span>
+            <input class="form-control form-control-sm border-start-0" 
+                  type="search" 
+                  placeholder="Chercher un produit, un GIE ou une Catégorie" 
+                  aria-label="Search" 
+                  style="font-size: 11px;">
+          </div>
+          <button class="btn btn-sm gradient-blue-btn text-white ms-2" type="submit" style="font-size: 16px;">
+            Rechercher
+          </button>
+        </form>
+      </div>
+      <!-- 🟡 Navigation + Panier -->
+      <div class="col-md-4">
+        <nav class="d-flex justify-content-end align-items-center">
+          <ul class="list-unstyled d-flex mb-0 gap-3 align-items-center">
+            <li><a href="catalog.php" class="text-dark fw-semibold">Catalogue</a></li>
+            <li><a href="about.php" class="text-dark fw-semibold">Partenaires</a></li>
+            <li><a href="news.php" class="text-dark fw-semibold">Nouveautés</a></li>
+            <li><a href="contact.php" class="text-dark fw-semibold">Contact</a></li>
+            <li><a href="inscription.php" class="text-dark fw-semibold">S'identifier</a></li>
+            <!-- 🛒 Panier -->
+            <li class="position-relative">
+              <a href="panier.php" class="text-dark">
+                <i class="fas fa-shopping-cart fa-lg"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+  </div>
     </header>
 
     <!-- Hero Section -->
@@ -339,46 +396,106 @@
         <!-- Social Media -->
         <div class="row mb-5">
             <div class="col-12 text-center">
-                <h3 class="mb-4"><i class="fas fa-hashtag me-2 text-primary"></i>Suivez-nous sur les réseaux sociaux</h3>
+                <!--<h3 class="mb-4"><i class="fas fa-hashtag me-2 text-primary"></i>Suivez-nous sur les réseaux sociaux</h3>
                 <div class="d-flex justify-content-center gap-3">
                     <a href="#" class="btn btn-outline-primary btn-lg rounded-circle"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="btn btn-outline-primary btn-lg rounded-circle"><i class="fab fa-twitter"></i></a>
                     <a href="#" class="btn btn-outline-primary btn-lg rounded-circle"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="btn btn-outline-primary btn-lg rounded-circle"><i class="fab fa-linkedin-in"></i></a>
                     <a href="#" class="btn btn-outline-primary btn-lg rounded-circle"><i class="fab fa-whatsapp"></i></a>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
+     <!-- Newsletter Section -->
+   <section class="newsletter-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h3>Nouveau sur Ndar Ndimbal Connect ? </h3>
+                <p class="mb-4">Inscrivez-vous à nos communications pour recevoir nos meilleures offres!</p>
+                
+                <form class="row g-2 justify-content-center">
+                    <!-- Dans la section newsletter -->
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white">
+                                <i class="fas fa-envelope text-primary"></i> <!-- Icône Gmail (enveloppe) -->
+                            </span>
+                            <input type="email" class="form-control newsletter-input" placeholder="Votre adresse email" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary newsletter-btn w-100" style="font-size: 18px; padding: 10px 0;">
+                            S'abonner
+                        </button>
+                    </div>
+                    <!-- Case à cocher -->
+                    <div class="col-12 mt-3 text-start">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="acceptPolicy" required>
+                            <label class="form-check-label" for="acceptPolicy" style="font-size: 15px; color: #555;">
+                                J'accepte la Politique de confidentialité</a> et des cookies de NDAR NDIMBAL CONNECT, 
+                                et je comprends que je peux me désabonner des newsletters à tout moment.<br>
+                                 <a href="Politique de confidentialité " class="text-decoration-underline">J'accepte les conditions légales</a>.
+                            </label>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
 
     <footer class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>NDAR NIMBAL CONNECT</h5>
-                    <p>Plateforme de mise en relation des GIE de Saint-Louis</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Liens utiles</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Mentions légales</a></li>
-                        <li><a href="#" class="text-white">Politique de confidentialité</a></li>
-                        <li><a href="#" class="text-white">Conditions d'utilisation</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Newsletter</h5>
-                    <p>Abonnez-vous pour recevoir nos actualités</p>
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Votre email">
-                        <button class="btn btn-primary" type="button">S'abonner</button>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <p class="text-center mb-0">&copy; 2025 NDAR NIMBAL CONNECT. Tous droits réservés.</p>
+  <div class="container">
+    <div class="row">
+      <!-- Colonne 1 : Présentation -->
+      <div class="col-md-4 mb-4">
+        <h5>NDAR NDIMBAL CONNECT</h5>
+        <p>Plateforme de mise en relation des GIE de Saint-Louis</p>
+      </div>
+      <!-- Colonne 2 : Liens rapides centrés avec icônes -->
+        <div class="col-md-4 mb-4 text-center">
+        <h5>Liens rapides</h5>
+        <ul class="list-unstyled d-inline-block text-start">
+            <li><a href="about.php" class="text-white d-block"><i class="fas fa-users me-4"></i>Les GIE</a></li>
+            <li><a href="catalog.php" class="text-white d-block"><i class="fas fa-th-list me-4"></i>Catalogue</a></li>
+            <li><a href="news.php" class="text-white d-block"><i class="fas fa-newspaper me-4"></i>Actualités</a></li>
+            <li><a href="contact.php" class="text-white d-block"><i class="fas fa-phone-alt me-4"></i>Contact</a></li>
+        </ul>
         </div>
-    </footer>
+      <!-- Colonne 3 : Réseaux sociaux (accordion) -->
+      <div class="col-md-4 mb-4">
+        <div class="accordion" id="accordionSocial">
+          <div class="accordion-item bg-dark border-0">
+            <h2 class="accordion-header" id="headingSocial">
+              <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSocial" aria-expanded="false" aria-controls="collapseSocial">
+                RETROUVEZ-NOUS SUR
+              </button>
+            </h2>
+            <div id="collapseSocial" class="accordion-collapse collapse" aria-labelledby="headingSocial" data-bs-parent="#accordionSocial">
+              <div class="accordion-body">
+                <div class="social-icons">
+                  <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                  <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                  <a href="#" class="text-white me-3"><i class="fab fa-whatsapp"></i></a>
+                  <a href="#" class="text-white"><i class="fab fa-tiktok"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="border-secondary">
+    <p class="text-center mb-0">&copy; 2025 NDAR NDIMBAL CONNECT. Tous droits réservés.</p>
+  </div>
+</footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>

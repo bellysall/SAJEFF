@@ -78,22 +78,29 @@ CREATE TABLE `paiement` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `produit`
---
-
-CREATE TABLE produits (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(100),
-    description TEXT,
-    prix DECIMAL(10,2)
-);
 
 -- --------------------------------------------------------
 
 --
+
+
+-- Structure de la table `produit`
+CREATE TABLE produits (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100),
+    prix INT
+);
+-- Structure de la table `panier`
+CREATE TABLE panier (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    produit_id INT,
+    quantite INT DEFAULT 1,
+    date_ajout DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Structure de la table `utilisateur`
 --
-
 CREATE TABLE utilisateurs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
@@ -102,6 +109,13 @@ CREATE TABLE utilisateurs (
     verification_token VARCHAR(255),
     is_verified TINYINT(1) DEFAULT 0, -- 0 = non confirmé, 1 = confirmé
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE panier (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    produit_id INT NOT NULL,
+    quantite INT DEFAULT 1,
+    date_ajout DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 

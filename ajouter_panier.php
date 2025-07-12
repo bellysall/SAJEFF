@@ -1,27 +1,29 @@
 <?php
 session_start();
+require_once 'config.php';
 
-// Initialiser le panier s'il n'existe pas encore
-if (!isset($_SESSION['panier'])) {
-    $_SESSION['panier'] = [];
+if (!isset($_SESSION['user'])) {
+    header('Location: panier.php');
+    exit;
 }
 
-// Récupérer les données envoyées par le formulaire
-if (isset($_POST['product_id'], $_POST['product_name'], $_POST['product_price'])) {
-    $product = [
-        'id' => $_POST['product_id'],
-        'name' => $_POST['product_name'],
-        'price' => $_POST['product_price']
-    ];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $userId = $_SESSION['user']['id'];
+    $produitId = $_POST['produit_id'];
+    $quantite = $_POST['quantite'] ?? 1;
 
-    // Ajouter le produit au panier (éviter les doublons simples)
-    $_SESSION['panier'][] = $product;
+    $stmt = $pdo->prepare("SELECT * FROM panier WHERE user_id = ? AND produit_id = ?");
+    $stmt->execute([$userId, $produitId]);
 
-    // Rediriger vers le catalogue avec un message
-    header("Location: panier.php?success=1");
-    exit();
-} else {
-    // En cas d'erreur de formulaire
-    header("Location: panier.php?error=1");
-    exit();
+    if ($stmt->rowCount() > 0) {
+        $pdo->prepare("UPDATE panier SET quantite = quantite + ? WHERE user_id = ? AND produit_id = ?")
+            ->execute([$quantite, $userId, $produitId]);
+    } else {
+        $pdo->prepare("INSERT INTO panier (user_id, produit_id, quantite) VALUES (?, ?, ?)")
+            ->execute([$userId, $produitId, $quantite]);
+    }
+
+    header('Location: panier.php');
+    exit;
 }
+?>

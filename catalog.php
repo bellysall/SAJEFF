@@ -16,9 +16,16 @@
         }
 
         body {
-            background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-color);
+            background: linear-gradient(to right, #fdfcfb, #e2d1c3); 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            
+
+        
         }
+
 
         header {
             background: white;
@@ -36,6 +43,15 @@
         .logo p {
             color: #666;
             font-size: 0.9rem;
+        }
+        .gradient-blue-btn {
+          background: linear-gradient(45deg, #007bff, #00c6ff);
+          border: none;
+        }
+
+        
+        .gradient-blue-btn:hover {
+            background: linear-gradient(135deg, #0066cc, #004080); /* Plus foncé au survol */
         }
 
         nav ul {
@@ -56,6 +72,7 @@
         nav a:hover, nav .active a {
             color: var(--primary-color);
         }
+        
 
         .mobile-menu {
             display: none;
@@ -157,6 +174,51 @@
         .contact-btn:hover {
             background: #f57c00;
         }
+         /* Newsletter */
+        .newsletter-section {
+            background: var(--dark-color);
+            color: white;
+            padding: 4rem 0;
+            margin-top: 3rem;
+        }
+
+        .newsletter-input {
+            border-radius: 30px;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            font-size: 18px;
+           padding: 10px 12px; 
+
+        }
+
+        .newsletter-btn {
+            border-radius: 30px;
+            padding: 0.8rem 2rem;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                width: 100%;
+                left: 0;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                z-index: 100;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .news-header {
+                padding: 3rem 0;
+            }
+        }
 
         @media (max-width: 768px) {
             nav ul {
@@ -171,35 +233,60 @@
                 margin-bottom: 1rem;
             }
         }
+        
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="logo d-flex align-items-center gap-5" style="margin-top: -30px;">
-                        <img src="images/logo.png" alt="Logo NDAR NDIMBAL CONNECT" style="height: 90px;">
-                  <div style="margin-bottom: -10px;">
-                        <h1 style="margin-bottom: 0.3rem;">NDAR NDIMBAL CONNECT</h1>
-                        <p style="margin-bottom: 0;">Plateforme des GIE de Saint-Louis</p>
-                  </div>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="accueil.php">Accueil</a></li>
-                        <li><a href="about.php">Les GIE</a></li>
-                        <li class="active"><a href="catalog.php">Catalogue</a></li>
-                        <li><a href="news.php">Nouveautés</a></li>
-                        <li><a href="contact.php">Contact</a></li>
-                        <li><a href="panier.php">Mon Panier</a></li>
+        <header>
+  <div class="container py-2">
+    <div class="row align-items-center gx-3">
 
-                    </ul>
-                    <div class="mobile-menu">
-                        <i class="fas fa-bars"></i>
-                    </div>
-                </nav>
-            </div>
-        </div>
+      <!-- 🟣 Logo -->
+      <div class="col-md-2 d-flex align-items-center">
+        <img src="images/logo.png" alt="Logo NDAR NDIMBAL CONNECT" style="height: 70px;">
+      </div>
+
+      <!-- 🔵 Barre de recherche avec icône dans l'input -->
+      <div class="col-md-6">
+        <form class="d-flex align-items-center" role="search">
+          <div class="input-group" style="max-width: 300px;">
+            <span class="input-group-text bg-white border-end-0">
+              <i class="fas fa-search text-secondary"></i>
+            </span>
+            <input class="form-control form-control-sm border-start-0" 
+                  type="search" 
+                  placeholder="Chercher un produit, un GIE ou une Catégorie" 
+                  aria-label="Search" 
+                  style="font-size: 11px;">
+          </div>
+          <button class="btn btn-sm gradient-blue-btn text-white ms-2" type="submit" style="font-size: 16px;">
+            Rechercher
+          </button>
+        </form>
+      </div>
+      <!-- 🟡 Navigation + Panier -->
+      <div class="col-md-4">
+        <nav class="d-flex justify-content-end align-items-center">
+          <ul class="list-unstyled d-flex mb-0 gap-3 align-items-center">
+            <li><a href="catalog.php" class="text-dark fw-semibold">Catalogue</a></li>
+            <li><a href="about.php" class="text-dark fw-semibold">Partenaires</a></li>
+            <li><a href="news.php" class="text-dark fw-semibold">Nouveautés</a></li>
+            <li><a href="contact.php" class="text-dark fw-semibold">Contact</a></li>
+            <li><a href="inscription.php" class="text-dark fw-semibold">S'identifier</a></li>
+            <!-- 🛒 Panier -->
+            <li class="position-relative">
+              <a href="panier.php" class="text-dark">
+                <i class="fas fa-shopping-cart fa-lg"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+  </div>
     </header>
 
     <div class="catalog-header">
@@ -324,160 +411,244 @@
             </div>
         </div>
     </div>
-     <!-- Panier Form -->
-    <form method="post" action="ajouter_panier.php">
-        <input type="hidden" name="gie" value="<?= $gie['nom'] ?>">
-      <!--  <button type="submit" class="btn btn-success mt-2 w-50"><i class="fas fa-cart-plus me-2"></i>Ajouter au panier</button>-->
-    </form>
+     <!-- Newsletter Section -->
+   <section class="newsletter-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h3>Nouveau sur Ndar Ndimbal Connect ? </h3>
+                <p class="mb-4">Inscrivez-vous à nos communications pour recevoir nos meilleures offres!</p>
+                
+                <form class="row g-2 justify-content-center">
+                    <!-- Dans la section newsletter -->
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white">
+                                <i class="fas fa-envelope text-primary"></i> <!-- Icône Gmail (enveloppe) -->
+                            </span>
+                            <input type="email" class="form-control newsletter-input" placeholder="Votre adresse email" required>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary newsletter-btn w-100" style="font-size: 18px; padding: 10px 0;">
+                            S'abonner
+                        </button>
+                    </div>
+                    <!-- Case à cocher -->
+                    <div class="col-12 mt-3 text-start">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="acceptPolicy" required>
+                            <label class="form-check-label" for="acceptPolicy" style="font-size: 15px; color: #555;">
+                                J'accepte la Politique de confidentialité</a> et des cookies de NDAR NDIMBAL CONNECT, 
+                                et je comprends que je peux me désabonner des newsletters à tout moment.<br>
+                                 <a href="Politique de confidentialité " class="text-decoration-underline">J'accepte les conditions légales</a>.
+                            </label>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
 
      <footer class="bg-dark text-white py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>NDAR NDIMBAL CONNECT</h5>
-                    <p>Plateforme de mise en relation des GIE de Saint-Louis</p>
-                </div>
-                <div class="col-md-4">
-                    <h5>Liens rapides</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="about.php" class="text-white">Les GIE</a></li>
-                        <li><a href="catalogue.php" class="text-white">Catalogue</a></li>
-                        <li><a href="news.php" class="text-white">Actualités</a></li>
-                        <li><a href="contact.php" class="text-white">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h5>Réseaux sociaux</h5>
-                    <div class="social-icons">
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <p class="text-center mb-0">&copy; 2025 NDAR NDIMBAL CONNECT. Tous droits réservés.</p>
+  <div class="container">
+    <div class="row">
+      <!-- Colonne 1 : Présentation -->
+      <div class="col-md-4 mb-4">
+        <h5>NDAR NDIMBAL CONNECT</h5>
+        <p>Plateforme de mise en relation des GIE de Saint-Louis</p>
+      </div>
+      <!-- Colonne 2 : Liens rapides centrés avec icônes -->
+        <div class="col-md-4 mb-4 text-center">
+        <h5>Liens rapides</h5>
+        <ul class="list-unstyled d-inline-block text-start">
+            <li><a href="about.php" class="text-white d-block"><i class="fas fa-users me-4"></i>Les GIE</a></li>
+            <li><a href="catalog.php" class="text-white d-block"><i class="fas fa-th-list me-4"></i>Catalogue</a></li>
+            <li><a href="news.php" class="text-white d-block"><i class="fas fa-newspaper me-4"></i>Actualités</a></li>
+            <li><a href="contact.php" class="text-white d-block"><i class="fas fa-phone-alt me-4"></i>Contact</a></li>
+        </ul>
         </div>
-    </footer>
+      <!-- Colonne 3 : Réseaux sociaux (accordion) -->
+      <div class="col-md-4 mb-4">
+        <div class="accordion" id="accordionSocial">
+          <div class="accordion-item bg-dark border-0">
+            <h2 class="accordion-header" id="headingSocial">
+              <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSocial" aria-expanded="false" aria-controls="collapseSocial">
+                RETROUVEZ-NOUS SUR
+              </button>
+            </h2>
+            <div id="collapseSocial" class="accordion-collapse collapse" aria-labelledby="headingSocial" data-bs-parent="#accordionSocial">
+              <div class="accordion-body">
+                <div class="social-icons">
+                  <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                  <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                  <a href="#" class="text-white me-3"><i class="fab fa-whatsapp"></i></a>
+                  <a href="#" class="text-white"><i class="fab fa-tiktok"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="border-secondary">
+    <p class="text-center mb-0">&copy; 2025 NDAR NDIMBAL CONNECT. Tous droits réservés.</p>
+  </div>
+</footer>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
         // Données d'exemple des produits
-        let products = [
-            {
-                id: 1,
-                name: "Savon au Karité",
-                category: "Cosmétique",
-                price: 1500,
-                gie: "GIE Ndèye Fatou",
-                description: "Savon naturel fabriqué avec du beurre de karité bio",
-                contact: "77 123 45 67",
-                image: "fas fa-soap"
-            },
-            {
-                id: 2,
-                name: "Bissap en poudre",
-                category: "Alimentation",
-                price: 2000,
-                gie: "GIE Yaay Borom",
-                description: "Bissap naturel séché et réduit en poudre",
-                contact: "70 987 65 43",
-                image: "fas fa-leaf"
-            },
-            {
-                id: 3,
-                name: "Boubou traditionnel",
-                category: "Textile",
-                price: 25000,
-                gie: "GIE Femmes Solidaires",
-                description: "Boubou cousu main avec tissus wax authentique",
-                contact: "76 555 44 33",
-                image: "fas fa-tshirt"
-            },
-            {
-                id: 4,
-                name: "Panier en raphia",
-                category: "Artisanat",
-                price: 8000,
-                gie: "GIE Ndèye Fatou",
-                description: "Panier tressé à la main en raphia naturel",
-                contact: "77 123 45 67",
-                image: "fas fa-shopping-basket"
-            },
-            {
-                id: 5,
-                name: "Service de couture",
-                category: "Services",
-                price: 15000,
-                gie: "GIE Femmes Solidaires",
-                description: "Couture sur mesure pour vêtements traditionnels et modernes",
-                contact: "76 555 44 33",
-                image: "fas fa-cut"
-            },
-            {
-                id: 6,
-                name: "Huile de coco",
-                category: "Cosmétique",
-                price: 3500,
-                gie: "GIE Yaay Borom",
-                description: "Huile de coco pure pressée à froid",
-                contact: "70 987 65 43",
-                image: "fas fa-oil-can"
-            }
-        ];
+       let products = [
+    {
+        id: 1,
+        name: "Savon au Karité",
+        category: "Cosmétique",
+        price: 1500,
+        gie: "GIE Ndèye Fatou",
+        description: "Savon naturel fabriqué avec du beurre de karité bio",
+        contact: "77 123 45 67",
+        image: "parfum3.jpg"
+    },
+    {
+        id: 2,
+        name: "Bissap en poudre",
+        category: "Alimentation",
+        price: 2000,
+        gie: "GIE Yaay Borom",
+        description: "Bissap naturel séché et réduit en poudre",
+        contact: "70 987 65 43",
+        image: "araw.jpeg"
+    },
+    {
+        id: 3,
+        name: "Boubou traditionnel",
+        category: "Vetement",
+        price: 25000,
+        gie: "GIE Femmes Solidaires",
+        description: "Boubou cousu main avec tissu wax authentique",
+        contact: "76 555 44 33",
+        image: "vetement.jpg"
+    },
+    {
+        id: 4,
+        name: "Panier en raphia",
+        category: "Artisanat",
+        price: 8000,
+        gie: "GIE Ndèye Fatou",
+        description: "Panier tressé à la main en raphia naturel",
+        contact: "77 123 45 67",
+        image: "artisant2.jpg"
+    },
+    {
+        id: 5,
+        name: "Service de couture",
+        category: "Services",
+        price: 15000,
+        gie: "GIE Femmes Solidaires",
+        description: "Couture sur mesure pour tenues traditionnelles et modernes",
+        contact: "76 555 44 33",
+        image: "service.jpg"
+    },
+    {
+        id: 6,
+        name: "Parfum De Marque",
+        category: "Cosmétique",
+        price: 3500,
+        gie: "GIE Yaay Borom",
+        description: "Huile de coco pure pressée à froid",
+        contact: "70 987 65 43",
+        image: "parfume1.jpg"
+    },
+        {
+        id: 7,
+        name: "Parfum De Marque",
+        category: "Cosmétique",
+        price: 3500,
+        gie: "GIE Yaay Borom",
+        description: "Huile de coco pure pressée à froid",
+        contact: "70 987 65 43",
+        image: "parfume1.jpg"
+    },
+        {
+        id: 8,
+        name: "Parfum De Marque",
+        category: "Cosmétique",
+        price: 3500,
+        gie: "GIE Yaay Borom",
+        description: "Huile de coco pure pressée à froid",
+        contact: "70 987 65 43",
+        image: "parfume1.jpg"
+    },
+        {
+        id: 9,
+        name: "Parfum De Marque",
+        category: "Cosmétique",
+        price: 3500,
+        gie: "GIE Yaay Borom",
+        description: "Huile de coco pure pressée à froid",
+        contact: "70 987 65 43",
+        image: "parfume1.jpg"
+    }
+];
+
 
         let filteredProducts = [...products];
  // Mise à jour de la fonction displayProducts avec bouton "Ajouter au panier"
     function displayProducts(productsToShow) {
-        const grid = document.getElementById('productsGrid');
-        grid.innerHTML = '';
+    const grid = document.getElementById('productsGrid');
+    grid.innerHTML = '';
 
-        productsToShow.forEach(product => {
-            const productCard = `
-                <div class="col-lg-4 col-md-6">
-                    <div class="card product-card h-100">
-                        <div class="product-image">
-                            <i class="${product.image}" aria-hidden="true"></i>
+    productsToShow.forEach(product => {
+        const productCard = `
+            <div class="col-lg-4 col-md-6">
+                <div class="card product-card h-100">
+                    <div class="product-image p-2">
+                        <img src="images/${product.image}" alt="${product.name}" class="img-fluid rounded" style="height: 180px; object-fit: cover; width: 100%;">
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title mb-0">${product.name}</h5>
+                            <span class="category-badge">${product.category}</span>
                         </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                <h5 class="card-title mb-0">${product.name}</h5>
-                                <span class="category-badge">${product.category}</span>
-                            </div>
-                            <div class="gie-info">
-                                <small><i class="fas fa-users me-2" aria-hidden="true"></i>${product.gie}</small>
-                            </div>
-                            <p class="card-text text-muted">${product.description}</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="price-tag">${product.price.toLocaleString()} FCFA</span>
-                                <form method="post" action="ajouter_panier.php" class="m-0">
-                                    <input type="hidden" name="product_id" value="${product.id}">
-                                    <input type="hidden" name="product_name" value="${product.name}">
-                                    <input type="hidden" name="product_price" value="${product.price}">
-                                    <button type="submit" class="btn btn-success btn-sm">
-                                        <i class="fas fa-cart-plus me-1"></i>Ajouter au panier
-                                    </button>
-                                </form>
-                            </div>
-
+                        <div class="gie-info">
+                            <small><i class="fas fa-users me-2" aria-hidden="true"></i>${product.gie}</small>
+                        </div>
+                        <p class="card-text text-muted">${product.description}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="price-tag">${product.price.toLocaleString()} FCFA</span>
+                            <form method="post" action="ajouter_panier.php" class="m-0">
+                                <input type="hidden" name="product_id" value="${product.id}">
+                                <input type="hidden" name="product_name" value="${product.name}">
+                                <input type="hidden" name="product_price" value="${product.price}">
+                                <button type="submit" class="btn btn-success btn-sm">
+                                    <i class="fas fa-cart-plus me-1"></i>Ajouter au panier
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            `;
-               grid.innerHTML += productCard;
-        });
+            </div>
+        `;
+        grid.innerHTML += productCard;
+    });
 
-        if (productsToShow.length === 0) {
-            grid.innerHTML = `
-                <div class="col-12 text-center py-5">
-                    <i class="fas fa-search fa-3x text-muted mb-3" aria-hidden="true"></i>
-                    <h4 class="text-muted">Aucun produit trouvé</h4>
-                    <p class="text-muted">Essayez de modifier vos critères de recherche</p>
-                </div>
-            `;
-            }
-        }
+    if (productsToShow.length === 0) {
+        grid.innerHTML = `
+            <div class="col-12 text-center py-5">
+                <i class="fas fa-search fa-3x text-muted mb-3" aria-hidden="true"></i>
+                <h4 class="text-muted">Aucun produit trouvé</h4>
+                <p class="text-muted">Essayez de modifier vos critères de recherche</p>
+            </div>
+        `;
+    }
+}
 
         // Filtrer les produits
         function applyFilters() {
